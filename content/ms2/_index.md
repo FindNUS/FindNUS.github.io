@@ -16,7 +16,7 @@ We arranged and tagged (the feedback qn number) in this README to fit closely to
 
 
 # 1. Acceptance Testing
-Please head over to the (FindNUS live site)[https://findnus.netlify.app/] to test the site out!
+Please head over to the [FindNUS live site](https://findnus.netlify.app/) to test the site out!
 
 ## Featureset
 This is what we have done in Milestone 2.
@@ -29,13 +29,13 @@ This is what we have done in Milestone 2.
     No need to specify Category = Cards and fumble around with filters. Typing in anything will return relevant results, similar to Google search.
 
 # 2. Features for Milestone 3
-You can find the planned [featureset here](./ms3/)
+You can find the planned [featureset here](./ms3/).
 
 # 3. UIUX and Testing
-We document user testing and code testing [here](./uiux)
+We document user testing and code testing [here](./uiux).
 
 # 4.3 Technical Documentation
-We document our key technologies and intergration [here](./technical/)
+We document our key technologies and intergration [here](./technical/).
 
 # 4.5 Software Engineering Practices
-We document our SWE practices [here](./swe)
+We document our SWE practices [here](./swe).
