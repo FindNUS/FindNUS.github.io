@@ -7,13 +7,8 @@ weight: 1
 ---
 In this page, we talk about the nitty gritty **integration** and technical details for FindNUS.
 
-We divide this into 3 seperate pages as we get quite technical:
-1. Frontend
-2. Backend
-3. Overall Integration of Front and Back
+## [Frontend Technical Documentation](./frontend/)
 
-## [Frontend Technical](./frontend/)
+## [Backend Technical Documentation](./backend/)
 
-## [Backend Technical](./backend/)
-
-## [Integration Technical](./integration/)
+<!-- ## [Integration Technical](./integration/) -->

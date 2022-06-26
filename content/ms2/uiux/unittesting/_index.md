@@ -140,7 +140,7 @@ func TestParseLostItemBody(t *testing.T) {
 ```
 ### Example 2: HTTP Routing test
 Certain HTTP requests. In this snippet, we mock HTTP data to test our HTTP callback handler.
-In this snippet, 
+In this snippet, we mock HTTP requests with common endpoint errors, such as wrong parameter types being input into the code. We test that the response code is appropriately returned (400 instead of 200), which means that the error was handled correctly internally.  
 ```go
 func TestHandleNewLostItem(t *testing.T) {
 	// Test that user_id guard works
