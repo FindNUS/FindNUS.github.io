@@ -10,10 +10,9 @@ This is the docusite for FindNUS Milestone 2 (Orbital).
 We arranged and tagged (the feedback question number) in this README to fit closely to the evaluation form, for your convenience.  
 
 **Important Links:**  
-[Poster]()  
-[Video]()  
-[4.7 Project Logs]()  
-
+[Poster](https://drive.google.com/file/d/1ehe4LKoavIjWYzhT0JLOHbl3YyRtaNQ7/view?usp=sharing)  
+[Video](https://drive.google.com/file/d/1kmdSASvO5bZKELHSHOX8NoBH66j-_Njk/view?usp=sharing)  
+[Project Log](https://drive.google.com/file/d/1c3h0cu_kSZ0nxxgs7b55iV3B9jGVkwSk/view?usp=sharing)  
 
 # 1. Acceptance Testing
 Please head over to the [FindNUS live site](https://findnus.netlify.app/) to test the site out!
