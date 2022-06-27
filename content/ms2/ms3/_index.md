@@ -20,13 +20,15 @@ This page documents our planned extension features to be done for Milestone 3.
    - End-to-end testing with <a href="https://www.npmjs.com/package/puppeteer" target="_blank" rel="noopener">Puppeteer</a> to simulate user intertaction with application
 
 # Backend
-1. Lookout microservice <div id="lookout-service"></div>
+1. Lookout Microservice <div id="lookout-service"></div>
     - When a loster submits a lost item, lookup the found database to see which items potentially match the lost item
     - Asynchronously send a 'possible match' alert to the Lost user 
+    - Possible utilisation of a NLP library to optimise lookups for more relevant matches
 2. Security Hardening
     - Add authentication guards to various priviledged endpoints
     - Simple DDoS mitigation logic
+3. Include GPS/Geographical data in Database Schema to assist in Geocoding feature
 
-# Documentation
+# Extended Documentation
 1. User guide
 2. Developer guide & contribution docs

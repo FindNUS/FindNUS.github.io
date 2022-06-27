@@ -34,13 +34,14 @@ posts_count:
   other: "{{ . }} posts"
 posts_tagged_with: All posts tagged with '{{ . }}'
 
-footer_build_with: >
-  Built with <a href="https://gohugo.io/" class="gdoc-footer__link">Hugo</a> and
-  <svg class="gdoc-icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg>
-footer_legal_notice: Legal Notice
-footer_privacy_policy: Privacy Policy
-footer_content_license_prefix: >
-  Content licensed under
+footer_build_with: 
+  FindNUS, built with <svg class="gdoc-icon gdoc_heart"><use xlink:href="#gdoc_heart"></use></svg> By
+  <a href="https://github.com/jinxuan-owyong" class="gdoc-footer__link">Jin Xuan</a> &
+  <a href="https://github.com/nichyjt" class="gdoc-footer__link">Nicholas</a>
+# footer_legal_notice: Legal Notice
+# footer_privacy_policy: Privacy Policy
+# footer_content_license_prefix: >
+#   Content licensed under
 
 language_switch_no_tranlation_prefix: "Page not translated:"
 
