@@ -9,8 +9,18 @@ This page documents our planned extension features to be done for Milestone 3.
 
 # Frontend
 
+1. User experience
+   - Responsive page design for use with mobile and tablet
+   - SMS/Email (un)subscription for backend [lookout service](#lookout-service)
+2. Geocoding
+   - Implement geocoding with Google Maps API, which translates user input into GPS coordinates
+   - Integrate map into application and allow user to view item location and get directions
+3. Application Testing
+   - Extend unit and integration testing to cover all components and pages
+   - End-to-end testing with <a href="https://www.npmjs.com/package/puppeteer" target="_blank" rel="noopener">Puppeteer</a> to simulate user intertaction with application
+
 # Backend
-1. Lookout microservice
+1. Lookout microservice <div id="lookout-service"></div>
     - When a loster submits a lost item, lookup the found database to see which items potentially match the lost item
     - Asynchronously send a 'possible match' alert to the Lost user 
 2. Security Hardening
