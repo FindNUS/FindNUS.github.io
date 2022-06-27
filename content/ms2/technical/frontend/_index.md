@@ -337,20 +337,7 @@ __User-uploaded items__
 
 ## Continuous Integration/Continuous Delivery
 
-__Commit Testing__
-
-New pushes and pull requests are automatically tested with GitHub Actions
-
-![GitHub Actions](https://i.imgur.com/mR181LM.png)
-![CI Tests](https://i.imgur.com/l70EAkR.png)
-
-__Deployment__
-
-When a pull request is opened to merge to either the production (main) or development (dev) branch, a deploy preview is triggerred and Netlify attempts to build a preview which can be tested, before the changes are merged into the base branch. If the build fails, 
-
-![Deploy preview](https://i.imgur.com/IIN27Bc.png)
-
-Upon merging, the target branch is automatically built and deployed.
+Changes to the application are continuously tested with GitHub Actions and Netlify to ensure code functionality. For more information, refer to [software engineering](../../swe/#frontend) and [unit testing](../../uiux/unittesting/#frontend)
 
 <div align="right"><a href="#table-of-contents">Back to top</a></div>
 
