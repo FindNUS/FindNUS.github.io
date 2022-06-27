@@ -23,8 +23,8 @@ main:
             ref: "/ms2/technical/backend"
           - name: Frontend Technical
             ref: "/ms2/technical/frontend"
-          - name: Integration Technical
-            ref: "/ms2/technical/integration"
+          # - name: Integration Technical
+          #   ref: "/ms2/technical/integration"
       - name: Milestone 3 Features
         ref: "/ms2/ms3"
       - name: UIUX and Testing 

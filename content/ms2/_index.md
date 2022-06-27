@@ -6,8 +6,8 @@ weight: 1
 # geekdocHidden: false
 emojify: true
 ---
-Hi! This is the docusite for FindNUS Milestone 2 (Orbital).  
-We arranged and tagged (the feedback qn number) in this README to fit closely to the evaluation form, for your convenience.  
+This is the docusite for FindNUS Milestone 2 (Orbital).  
+We arranged and tagged (the feedback question number) in this README to fit closely to the evaluation form, for your convenience.  
 
 **Important Links:**  
 [Poster]()  
@@ -19,14 +19,22 @@ We arranged and tagged (the feedback qn number) in this README to fit closely to
 Please head over to the [FindNUS live site](https://findnus.netlify.app/) to test the site out!
 
 ## Featureset
-This is what we have done in Milestone 2.
-- Submission of new lost and found items (POST)
-- Viewing a filterable list of lost and found items
+This are the core features we have implemented and tested in **Milestone 2**.
 - Stupidly Easy Searching
   - Typo-resistant  
     e.g. "Water bottle" and "W4tr botl" will return the correct item
   - Human Querying  
     No need to specify Category = Cards and fumble around with filters. Typing in anything will return relevant results, similar to Google search.
+- Item peeking on home page (view recently submitted items by descending date)
+- Item filtering by category for both searching and peek
+- User dashboard: View user-uploaded (lost) items, profile
+- Item submission logic (both found and lost items): Drag and drop to upload image, dropdown menu to select various fields
+- Form field validation for item
+
+**Existing Milestone 1 features**
+- SMS login
+- App routing
+- Protected routing
 
 # 2. Features for Milestone 3
 You can find the planned [featureset here](./ms3/).
