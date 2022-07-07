@@ -65,7 +65,7 @@ This section dives deep into how the technology is integrated with one another t
 We will explain the integration through **events**.
 
 ## Recieving HTTP requests from frontend
-Technologies Integrated (TI): Golang, Docker, Heroku  
+**Technologies Integrated (TI): Golang, Docker, Heroku**
 
 The frontend needs things to be done, such as POSTing new items or GETting items from the database. This is done through the backend providing an API using the HTTP.  
 
@@ -102,7 +102,7 @@ router.Run(":" + port)
 ```
 
 ## Sending messages between microservices
-TI: Golang, RabbitMQ 
+**TI: Golang, RabbitMQ**
 
 In the microservices architecture, business logic is seperated into different runtimes/containers based on function.  
 We will need to pass information between these runtimes, for example, the **Backend Microservice** needing to get a item's detail from the **Item Microservice**.  
@@ -152,7 +152,7 @@ func GetJobId() uint64 {
 ```
 
 ## Creating, removing and updating, deleting Items
-TI: MongoDB, Imgur, Elasticsearch
+**TI: MongoDB, Imgur, Elasticsearch**
 
 There are many moving parts and integrations in the CRUD logic. So, a diagram explaining one of the processes, POSTing a new item:  
 ![POST overview](./post.png) 

@@ -9,10 +9,23 @@ emojify: true
 This is the docusite for FindNUS Milestone 2 (Orbital).  
 We arranged and tagged (the feedback question number) in this README to fit closely to the evaluation form, for your convenience.  
 
-**Important Links:**  
-[Poster](https://drive.google.com/file/d/1ehe4LKoavIjWYzhT0JLOHbl3YyRtaNQ7/view?usp=sharing)  
-[Video](https://drive.google.com/file/d/1kmdSASvO5bZKELHSHOX8NoBH66j-_Njk/view?usp=sharing)  
-[Project Log](https://drive.google.com/file/d/1c3h0cu_kSZ0nxxgs7b55iV3B9jGVkwSk/view?usp=sharing)  
+# Table of Contents
+- [Table of Contents](#table-of-contents)
+- [Important Milestone 2 Links](#important-milestone-2-links)
+  - [Poster](#poster)
+  - [Video](#video)
+  - [Project Log](#project-log)
+- [1. Acceptance Testing](#1-acceptance-testing)
+  - [Featureset](#featureset)
+- [2. Features for Milestone 3](#2-features-for-milestone-3)
+- [3. UIUX and Testing](#3-uiux-and-testing)
+- [4.3 Technical Documentation](#43-technical-documentation)
+- [4.5 Software Engineering Practices](#45-software-engineering-practices)
+
+# Important Milestone 2 Links
+## [Poster](https://drive.google.com/file/d/1ehe4LKoavIjWYzhT0JLOHbl3YyRtaNQ7/view?usp=sharing)  
+## [Video](https://drive.google.com/file/d/1kmdSASvO5bZKELHSHOX8NoBH66j-_Njk/view?usp=sharing)  
+## [Project Log](https://drive.google.com/file/d/1c3h0cu_kSZ0nxxgs7b55iV3B9jGVkwSk/view?usp=sharing)  
 
 # 1. Acceptance Testing
 Please head over to the [FindNUS live site](https://findnus.netlify.app/) to test the site out!

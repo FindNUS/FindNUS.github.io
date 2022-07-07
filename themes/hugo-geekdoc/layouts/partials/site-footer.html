@@ -6,11 +6,11 @@
           {{ i18n "footer_build_with" | safeHTML }}
         </span>
         {{ with .Site.Params.GeekdocLegalNotice }}
-          <span class="gdoc-footer__item gdoc-footer__item--row">
+          <!-- <span class="gdoc-footer__item gdoc-footer__item--row">
             <a href="{{ . | relURL }}" class="gdoc-footer__link">
               {{ i18n "footer_legal_notice" }}
             </a>
-          </span>
+          </span> -->
         {{ end }}
         {{ with .Site.Params.GeekdocPrivacyPolicy }}
           <span class="gdoc-footer__item gdoc-footer__item--row">
@@ -20,14 +20,14 @@
           </span>
         {{ end }}
       </section>
-      {{ with .Site.Params.GeekdocContentLicense }}
+      <!-- {{ with .Site.Params.GeekdocContentLicense }}
         <section class="flex flex-wrap align-center">
           <span class="gdoc-footer__item">
             {{ i18n "footer_content_license_prefix" }}
             <a href="{{ .link }}" class="gdoc-footer__link no-wrap">{{ .name }}</a>
           </span>
         </section>
-      {{ end }}
+      {{ end }} -->
     </div>
     {{ if (default true .Site.Params.GeekdocBackToTop) }}
       <div class="flex flex-25 justify-end">

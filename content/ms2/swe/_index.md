@@ -17,11 +17,11 @@ weight: 1
     - [Continuous Delivery](#continuous-delivery)
 - [Backend](#backend)
   - [API Documentation](#api-documentation)
-    - [Backend Milestone 2 API Documentation](#backend-milestone-2-api-documentation)
+    - [README: Backend Milestone 2 API Documentation](#readme-backend-milestone-2-api-documentation)
+  - [Unit Testing](#unit-testing-1)
   - [CI/CD](#cicd-1)
-    - [Code Testing](#code-testing)
-      - [Example of Passing Unit Test:](#example-of-passing-unit-test)
-      - [Example of Failing Unit Test that helped us troubleshoot issues before deploying to a live environment:](#example-of-failing-unit-test-that-helped-us-troubleshoot-issues-before-deploying-to-a-live-environment)
+    - [Continuous Integration](#continuous-integration-1)
+    - [Continuous Delivery](#continuous-delivery-1)
 
 # Sprint
 We follow a sprint of two weeks, tracked via Github Projects.
@@ -70,6 +70,7 @@ Upon merging, the target branch is automatically built and deployed.
 # Backend
 
 ## API Documentation
+### [README: Backend Milestone 2 API Documentation](./apisample/)  
 Good API documentation is good SWE practice for backend. It reduces ambiguity in API usage and is important for knowledge retention for when new developers come and old developers go. This industry standard also makes it possible for computers to know how to interface with the API. 
 We documented the backend API using the [**OpenAPI3** specification](https://swagger.io/specification/). 
 
@@ -102,26 +103,40 @@ paths:
         '401':
           description: Firebase credentials not invalid
 ```
-This is not so human readable, so we made use of [open source openapi to markdown generator](https://github.com/openapi-contrib/openapi3-generator) to develop Human-friendly docs.
+This is not so human readable, so we made use of [open source openapi to markdown generator](https://github.com/openapi-contrib/openapi3-generator) to develop [Human-friendly docs](./apisample/).
 
-### [Backend Milestone 2 API Documentation](./apisample/)  
 
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
+<div align="right"><a href="#table-of-contents">Back to top</a></div>  
+
+## Unit Testing
+Code testing is covered in depth under the code test section. You can read more [about it here](../uiux/unittesting/).
 
 ## CI/CD
-We leveraged Github Actions to automate **testing** and **continuously deploy** our code.  
-This ensures that code works properly on a proper End to End environment before it goes live to production.
+We leveraged Github Actions and Docker to automate **testing** and **continuously deploy** our code.  
+This ensures that code works properly on a proper End to End environment before it goes live to production. Overall, CI/CD is used to (regressively) test code and automate the deployment process to smoothly deploy changes.  
 
-CICD history snapshot:
+Snippet of all CI/CD workflows in action:    
 ![Backend CICD evidence](backendCICD.png)
+### Continuous Integration
+Continuous integration is done whenever a pull request is made to the UAT or Production environments. If a microservice has changes, it will run **all** available unit tests to ensure that changes in one portion of the microservice did not break everything else.  
+Example of Passing Unit Test:  
 
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
+![Backend unit test pass](unit_test_eg.png)  
 
-### Code Testing
-Code testing is covered in depth under the [code test section](../uiux/unittesting/).
-#### Example of Passing Unit Test:  
-![Backend unit test pass](unit_test_eg.png)
-#### Example of Failing Unit Test that helped us troubleshoot issues before deploying to a live environment:  
+Example of Failing Unit Test that helped us troubleshoot issues before deploying to a live environment:  
+
 ![Backend unit test fail](unit_test_eg2.png)
+
+
+### Continuous Delivery
+Continuous delivery is done by pushing built **Docker** containers into Heroku's docker registry. 
+Various deployment parameters are configured using github actions, and a synchronised, common runtime is instantiated by building a docker container using dockerfiles 
+
+**Continuous Delivery Sample Job**  
+![CD Sample](deployment1.png)
+
+**Heroku logs on deployment**
+![CD Heroku](CICD_Heroku.png)
+<div align="right"><a href="#table-of-contents">Back to top</a></div>
 
 <div align="right"><a href="#table-of-contents">Back to top</a></div>
