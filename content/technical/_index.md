@@ -6,8 +6,6 @@ weight: 1
 # geekdocHidden: false
 emojify: true
 ---
-- [he](#he)
-
 # Introduction
 This section details the technical nitty-gritty of FindNUS:
 
