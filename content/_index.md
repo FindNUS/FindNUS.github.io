@@ -15,8 +15,10 @@ To our user testers, fellow peer evaluators and our Advisor Hardik Narang, thank
 - [FindNUS README :telescope:](#findnus-readme-telescope)
 - [Foreword & Introduction](#foreword--introduction)
 - [Table of Contents](#table-of-contents)
-  - [Quickstart](#quickstart)
+- [Quickstart](#quickstart)
   - [Proposed Level of Achievement](#proposed-level-of-achievement)
+  - [What's New? :stars:](#whats-new-stars)
+  - [Challenges Encountered](#challenges-encountered)
   - [Deployments](#deployments)
   - [Codebase](#codebase)
   - [Poster](#poster)
@@ -32,7 +34,7 @@ To our user testers, fellow peer evaluators and our Advisor Hardik Narang, thank
   - [Milestone 2](#milestone-2)
   - [Milestone 3](#milestone-3)
 
-## Quickstart
+# Quickstart
 You are a...  
 ***User*** wondering how to navigate FindNUS? [Click here.](/userguide/)  
 ***Developer*** wondering how to work on FindNUS? [Click here.](/devguide/)  
@@ -42,6 +44,16 @@ You are a...
 
 ## Proposed Level of Achievement
 FindNUS aims to achieve **Artemis** level.  
+
+## What's New? :stars:
+In this milestone, we focussed on adding quality of life features to make the searching for lost items much more seamless and 'smart'. The [full release notes are here](http://localhost:1313/scope/#milestone-3).    
+- Created an on-demand Lookout service powered by NLP to help Losters search the database for possible matches to their lost item
+- Created an asynchronus Lookout service that Losters can subscribe to by email to recieve updates on any new findins
+- Geolocation UI
+- User dashboard interface improvements
+- Better item preview functionality with more filtering options 
+
+## Challenges Encountered
 
 ## Deployments
 FindNUS is live @ [findnus.netlify.app](https://findnus.netlify.app). If you are here to try FindNUS out, click on the link!   
@@ -94,6 +106,7 @@ In our [**Problem Research Page**](/problem), We deep dive into our **project ai
 
 # Project Scope
 In our [Project Scope](/scope), we document each Orbital milestone and what features we have accomplished and set forth to do.
+
 
 # User Guide
 Need a detailed guide on navigating FindNUS? [Click here for the User Guide.](/userguide)
