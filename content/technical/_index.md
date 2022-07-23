@@ -12,7 +12,7 @@ This section details the technical nitty-gritty of FindNUS:
 ### [Frontend Overview](/technical/frontend)
 This section covers the architectural and logic flow for the frontend
 
-### [Backend Overview](/technical/backed)
+### [Backend Overview](/technical/backend)
 This section covers the architectural overview for the RESTful API Backend and the various integrations of technologies, from MongoDB to ElasticSearch.
 
 ### [User Testing](/technical/usertesting)

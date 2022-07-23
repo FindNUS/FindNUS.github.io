@@ -23,7 +23,8 @@ emojify: true
   - [Secrets Management](#secrets-management)
 - [Pull Request (PR) Etiquette](#pull-request-pr-etiquette)
 # Introduction
-Want to contribute and work on FindNUS? This is the guide for you.
+Want to contribute and work on FindNUS? This is the guide for you.  
+This guide covers how to setup the development environment for the Frontend and Backend respectively.  
 
 
 # Frontend
@@ -49,7 +50,6 @@ npm install
 <div align="right"><a href="#table-of-contents">Back to top</a></div>
 
 # Backend
-To work on backend features and bugfixes, the first thing you want to do is set up the development environment
 ## Installation Guide
 ### Pre-requisite: Golang
 You need to have golang >=1.18 installed.
@@ -124,7 +124,7 @@ func TestAdd(t *testing.T){
 The above is a trivial test case for demonstration purposes. **It is not rigorous enough for production** You should ideally design your testcases to cover all sorts of edge cases. If you need to use a file to store testcase data, simply make a `test` directory within `internal/{Microservice Name}` and store your txt/json/whatever data there. You can get inspiration from [here](/technical/unittesting/).  
 
 ## Secrets Management
-Secrets are exposed to the Docker container via enviroment variables.  
+Secrets are exposed to the Docker container via environment variables.  
 
 - If you are adding features that need secrets such as an API key, ping the maintainer to have it registered under the official findnus email and to be added to the repository secrets list on Github.
 - Update the following files to ensure that the secrets are being passed to the program at Deploy time

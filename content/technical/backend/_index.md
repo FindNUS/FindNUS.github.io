@@ -16,6 +16,8 @@ weight: 1
   - [Creating, removing and updating, deleting Items](#creating-removing-and-updating-deleting-items)
     - [Image storage with Imgur](#image-storage-with-imgur)
     - [Synchronising the Search Engine](#synchronising-the-search-engine)
+  - [Smart Lookout Service :star:](#smart-lookout-service-star)
+    - [Examples](#examples)
 - [Appendix A: Backend Design Choices](#appendix-a-backend-design-choices)
   - [Architecture: Microservice](#architecture-microservice)
   - [Platform: Heroku](#platform-heroku)
@@ -48,11 +50,13 @@ This is a list of the technologies that we have used to build the backend.
 - Bonsai ElasticSearch (Search Engine)
 - Firebase (Authentication)
 - Imgur (3rd Party API)
+- SMTP (Outlook Email Server)
+- Prose (Golang NLP library)
 
 [^2]: A message broker is needed to communicate between docker containers. This is a heroku perculiarity as the docker containers cannot talk to each other via HTTP due to security policy. In industry, message brokers are often used to coordinate work as well.
 
 # High-Level Overview
-![Backend Arch](./backend_250622.png)
+![Backend Arch](./backend.png)
 
 This figure shows how the backend roughly works as a whole unit to provide the backend API for FindNUS' business logic. 
 As of Milestone 2, we deployed **2 microservices**, backend and item. 
@@ -114,11 +118,11 @@ In summary, using RabbitMQ, we defined three **queues** to send our own messages
 **Item Queue `q_item`**  
 Handles one-off messages that require no return response, such as POST and DELETE.  
 
-**Remote Proceedure Call (RPC)[^3] Queue `q_get_req, q_get_resp`**   
+**Remote Proceedure Call (RPC)[^3] Queue `q_get_req, q_get_resp, etc`**   
 Handles messages that require a return response, such as GET and search queries.
 [^3]: A RPC is something like a synchronous GET request. It enables two computers in seperate locations to send information to each other. [A primer if you are interested](https://www.geeksforgeeks.org/remote-procedure-call-rpc-in-operating-system/)
 
-The below image illustrates the communciation pipelines between the 2 microservices using RabbitMQ.  
+The below image illustrates the communciation pipelines between the various microservices using RabbitMQ.  
 
 ![Message Queue Overview](./mq.png)
 
@@ -191,6 +195,134 @@ func ElasticAddItem(item ElasticItem) {
 	log.Println("Add item response:", res)
 }
 ```
+## Smart Lookout Service :star:
+A "**Smart Lookout Service**" was added in Milestone 3.  
+  
+Its function is to help Losters look through the dozens of found items and intelligently find Found items that match the Loster's lost item.  
+
+It uses **Natural Language Processing** to convert a Lost Item into a text-searchable query before sending it to a specially tuned ElasticSearch query to find good matches for the Lost item. We are using [`prose`](https://github.com/jdkato/prose), a NLP library for `go`.
+
+A Lost (and found) item's data structure looks like this on MongoDB: 
+```go  
+type Item struct {
+	Id              primitive.ObjectID 
+	Name            string
+	Date            time.Time
+	Location        string
+	Category        string
+	Contact_method  string
+	Contact_details string
+	Item_details    string
+	Image_url       string
+	User_id         string 
+	Lookout         bool   
+}	
+```
+But how do we use NLP on this schema?  
+
+First, we strip away all irrelevant terms that may dirty our search. So, irrelevant things like contact_details and user_id are removed.   
+```go
+type Item struct {
+	Name            string
+	Location        string
+	Category        string
+	Item_details    string
+}	
+```  
+We then concatenate these fields into a long string, delimited by a fullstop '.' in order for the NLP tokenizer to recognise the different fields as different sentences.  
+```go
+item Item // an item of struct Item we want to process
+rawString := strings.ToUpper(item.Name)
+rawString += ". " + item.Category
+rawString += ". " + item.Item_details
+rawString += ". " + strings.ToUpper(item.Location) // Force prose to recognise this as an entity
+```
+
+We then use `prose` and feed in our prepared string to process out the keywords. We use `prose` to identify important features of the string - entities (people, places), nouns and adjectives.  
+
+```go
+doc, _ := prose.NewDocument(rawString)
+	query := ""
+	// Entities hold more weight than descriptive tokens, so add them in as duplicates
+	ents := doc.Entities()
+	for _, ent := range ents {
+		query += " " + ent.Text
+	}
+	toks := doc.Tokens()
+    // Filter for keywords
+	for _, tok := range toks {
+		// Take in all the nouns
+		if tok.Tag == "NN" || tok.Tag == "NNS" || tok.Tag == "NNPS" || tok.Tag == "NNP" {
+			query += " " + tok.Text
+		} else if tok.Tag == "JJ" || tok.Tag == "JJR" {
+			// As well as the adjectives
+			query += " " + tok.Text
+		}
+	}
+```  
+
+The keywords that we are interested in are **Nouns** of all forms and **adjectives**. This is because key identifiers for a Lost and Found item lie in nouns and adjectives.  
+
+### Examples
+
+**Input**:
+```json
+{
+    "Name": "Wireless Mouse",
+    "User_id": "19fa21",
+    "Date": "2022-04-16T20:02:30Z",
+    "Location": "Central Library",
+    "Category": "Electronics",
+    "Item_details": "i found a logitech mouse at CLB level 2 in one of the cubicles."
+}
+```
+**Output**:
+```text
+WIRELESS MOUSE CLB WIRELESS MOUSE Electronics logitech mouse CLB level cubicles CENTRAL LIBRARY
+```
+
+**Input**:
+```json
+{
+    "Name": "Nalgene Water bottle",
+    "User_id": "19fa21",
+    "Date": "2022-05-26T08:51:48.782Z",
+    "Location": "Digital Systems Lab",
+    "Category": "Bottles",
+    "Image_url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Multi-use_water_bottle.JPG",
+    "Item_details": "I lost my nalgene bottle during peak hour at the lab. The bottle has a sticker on it and it's handle is broken",
+    "Contact_details": "@FindNUS",
+    "Contact_method": "Line"
+}
+```
+**Output**:
+```text
+NALGENE WATER BOTTLE Bottles NALGENE WATER BOTTLE Bottles nalgene bottle peak hour lab bottle sticker handle DIGITAL SYSTEMS LAB
+```
+
+This processed text is important as it will give us **relevant** ElasticSearch results. When we ignore common filler words like `the`, `a`, `I`, we are sure that the ElasticSearch results are due to the keywords.  
+
+With the keyword string, we tune our ElasticSearch query to look for close matches.  
+
+
+We make use of [`combined_fields`](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-combined-fields-query.html#query-dsl-combined-fields-query) type of matching, where the query spans across multiple fields. Better matching items (more keyword hits) are given a higher score in the ElasticSearch algorithm.  
+
+```golang
+// In the ElasticSearch database, the Item data structure is the same as the `Item` struct defined above.  
+mmq := elastic.NewMultiMatchQuery(
+		qry,
+		"Name", "Location", "Item_details", "Category",
+	)
+mmq.Type("combined_fields")
+// Min match 3 clauses, 1 for category, 2 for others
+// This filters out weakly matching items
+mmq.MinimumShouldMatch("3")
+mmq.FieldWithBoost("Name", 3) // Name matches are more significant
+mmq.FieldWithBoost("Item_details", 2) // Item_detail matches catch 'hidden' significant keywords
+```
+
+With that, we are able to process Lost Items for their keywords and search for appropriate matching Items. This automates the manual Loster process of having to scan through our website (or anywhere else) to search for possible Found items that are their lost item.   
+
 # Appendix A: Backend Design Choices 
 The following was initially documented with references in Milestone 1. As it is important technical information, it is brought over here for documentation sake. [Link to the original document](https://drive.google.com/file/d/1X4n5IalejDChWyBY_rGtnBOd1qMa3wq_/view?usp=sharing). 
 
@@ -268,32 +400,32 @@ We compared between three communication protocols that define how isolated conta
 |Message stability|Messages can get lost and is unrecoverable|Message loss is recoverable due to TCP handshake protocol|Messages are persistent and guaranteed to be delivered|
 
 
-Since Heroku does not provide support for REST architecture for inter-container communication, we are forced to use RPC and Message Queuing, which is the recommended way to do so (w.r.t. footnote 12). To use RPC &/or MQ, we need a message broker. We chose CloudAMQP (RabbitMQ) as it has extensive documentation on integration with Heroku20. 
+Since Heroku does not provide support for REST architecture for inter-container communication, we are forced to use RPC and Message Queuing, which is recommended by Heroku. To use RPC &/or MQ, we need a message broker. We chose CloudAMQP (RabbitMQ) as it has extensive documentation on integration with Heroku. 
 
-RabbitMQ is flexible – it allows us to use message queues and RPC21. Rather than stick to one communication protocol, we plan to use both RPC and MQ as both protocols are best suited for certain use cases. 
+RabbitMQ is flexible – it allows us to use message queues and RPC. Rather than stick to one communication protocol, we plan to use both RPC and MQ as both protocols are best suited for certain use cases. 
 
 **RPC: Searching**. RPC is very fast compared to the other protocols. This makes it suitable for short-lived operations that require quick responses, such as searching and autocompletion (Elasticsearch API calls). Even if the message is lost, it is tolerable in the case of autocompletion and just-in-time searching. 
 
-**MQ: Database CRUD**. There are certain operations that need stability and data persistence. When submitting LNF requests/items, the end-user is likely to only POST the request once and leave the application. We cannot afford the situation where a user submits an item request/registration, but the message gets lost halfway in the backend and the item is not registered in the database. MQs can be configured to guarantee delivery and data persistence22, this adds stability to the CRUD process which is critical to the Lost-and-found process. 
+**MQ: Database CRUD**. There are certain operations that need stability and data persistence. When submitting LNF requests/items, the end-user is likely to only POST the request once and leave the application. We cannot afford the situation where a user submits an item request/registration, but the message gets lost halfway in the backend and the item is not registered in the database. MQs can be configured to guarantee delivery and data persistence, this adds stability to the CRUD process which is critical to the Lost-and-found process. 
 
 ## Search Engine: Elasticsearch 
 
 Elasticsearch (ES) was chosen as the search engine for our application due to the nature of our LNF item schema. Effective searches for lost items rely heavily on string-based parameters such as its name and item details. Further, the “Item_details” is effectively full text, where the users write a long description of the item which allows for flexibility in registering LNF items. For example, an item detail can be: “the bottle’s handle is broken, and it has a NUS sticker on it”. 
 
-**Full-text search**. ES was built with text searching in mind23. It is optimised for indexing and searching through large bodies of text, such as the “Item_details” parameter. Although it is entirely possible to use full-text searches on SQL and even MongoDB, it is far simpler and to implement via ES. Most importantly, ES outperforms24 other competitors in querying speed. 
+**Full-text search**. ES was built with text searching in mind23. It is optimised for indexing and searching through large bodies of text, such as the “Item_details” parameter. Although it is entirely possible to use full-text searches on SQL and even MongoDB, it is far simpler and to implement via ES. Most importantly, ES outperforms other competitors in querying speed. 
 
 ## Language: Golang 
 
 Golang is a widely used server-side language. Compared to other languages, we chose Golang for the following reasons: 
 
-1. Golang is a relatively fast25 server-side language.  
-2. Easy to use HTTP server library that is concurrent26 by nature. 
+1. Golang is a relatively fast server-side language.  
+2. Easy to use HTTP server library that is concurrent by nature. 
     (https://github.com/gin-gonic/gin) 
     Unit-testing is built into the language and is simple to make and run.  
 
 ## Image storage: Imgur 
 
-Images tell a thousand words, which is why we included Images as part of the schema to submit a new item to the LNF database (Annex C). It is easier to identify lost items from pictures than wordy text. However, images take up a lot of space. To estimate storage requirements, we assumed that an average smartphone takes 12MP images which is about 3.6MB28 per photo.  Our free-tier MongoDB has a storage limit of 512MB. If we only used it to store images, we can fit approximately 142 images, which is very small. 
+Images tell a thousand words, which is why we included Images as part of the schema to submit a new item to the LNF database (Annex C). It is easier to identify lost items from pictures than wordy text. However, images take up a lot of space. To estimate storage requirements, we assumed that an average smartphone takes 12MP images which is about 3.6MB per photo.  Our free-tier MongoDB has a storage limit of 512MB. If we only used it to store images, we can fit approximately 142 images, which is very small. 
 
 The above estimation discounts the fact that smartphone cameras are getting even more powerful, with the upper limit going as high as 108MP (approx. 30MB/photo). Even if we use lossy compression, the disk space required by photos will still be in the order of megabytes. Hence, we cannot afford to directly store images on our backend servers. 
 

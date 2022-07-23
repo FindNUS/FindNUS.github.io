@@ -94,12 +94,10 @@ In this milestone we aimed to increase the **complexity** of our project by maki
 - Item update and deletion 
 - UI improvements
 
-
 ## Backend 
-- Creation of **Lookout** smart service using NLP technology  
-- Creation of Email subscription service 
-- Integration of geolocation data
+- Creation of [**Lookout** smart service](http://localhost:1313/technical/backend/#smart-lookout-service-star) using Natural Language Processing technology  
+- Creation of Email subscription service as an add-on to the Lookout service
+- Integration of geolocation data in database schema
 
-# Beyond Orbital
-// TODO WIP     
+# Beyond Orbital 
 Beyond Orbtial, we aim to launch FindNUS for actual use and see how it performs under real-world usage. If we have enough data, we can look into expanding FindNUS to do things such as detect spam :robot: from ham :meat_on_bone: in the item submission, as well as see how we can leverage QR codes around lost hotspots in campus to quickly submit items on-the-go.  
