@@ -17,7 +17,7 @@ emojify: true
     - [In Detail](#in-detail-1)
       - [Unofficial Groups.](#unofficial-groups)
       - [NUS Repo App.](#nus-repo-app)
-  - [Competitor Analysis + Specific Problems to Tackle](#competitor-analysis--specific-problems-to-tackle)
+- [Competitor Analysis](#competitor-analysis)
 - [Aim of FindNUS](#aim-of-findnus)
   - [What makes FindNUS different](#what-makes-findnus-different)
 - [Next: Project Scope](#next-project-scope)
@@ -80,7 +80,7 @@ reporting points in NUS are published on the RepoApp. It is far more likely that
 3 occur. As such, Losters who go on to RepoApp expecting to find their lost item are likely to
 end up disappointed, try their luck in unofficial groups or give up.
 
-## Competitor Analysis + Specific Problems to Tackle  
+# Competitor Analysis 
 
 Our main competitors for LNF in NUS are the RepoApp and telegram groups. Through analysing their weaknesses, we identify problems FindNUS needs to tackle.
 

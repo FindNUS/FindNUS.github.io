@@ -65,7 +65,7 @@ Install guide for [Windows/MacOS](https://docs.docker.com/get-docker/).
 Install via Linux Package Managers or Macos Brew -> This is a [more involved process](https://docs.docker.com/engine/install/ubuntu/).  
 
 ### Pre-requisite: OpenAPI Generator
-If you are working on the HTTP router that interfaces with the Frontend, **you must download this** in order to work on the Backend RESTul API documentation.  
+If you are working on the `backend` microservice and changing the HTTP endpoints that interfaces with the Frontend, **you must download this** in order to work on the Backend RESTul API documentation.  
 ```bash
 # Assumes you have npm installed
 npm install -g openapi3-generator
@@ -91,7 +91,7 @@ go get .
 After that, you are free to work on the files in the project and develop on FindNUS' backend!  
 
 ## Building on the RESTful API
-If you are modifying/adding a new endpoint or changing anything that **interfaces directly with Frontend**, you MUST update the API documentation.
+If you are modifying/adding a new endpoint or changing anything that **interfaces directly with Frontend**, you MUST update the API documentation.  
 The backend API documentation is kept in `/api`. Edit the documentation via `findnus.yaml` in accordance to [OpenAPI3.0 Specs](https://swagger.io/specification/). Once you are done, **build the human-friendly docs** via the build script provided under `/scripts`.  
 ```bash
 # Root directory of project 
@@ -121,7 +121,7 @@ func TestAdd(t *testing.T){
     }
 }
 ```
-The above is a trivial test case for demonstration purposes. **It is not rigorous enough for production** You should ideally design your testcases to cover all sorts of edge cases. If you need to use a file to store testcase data, simply make a `test` directory within `internal/{Microservice Name}` and store your txt/json/whatever data there. You can get inspiration from [here](/technical/unittesting/).  
+The above is a trivial test case for demonstration purposes. **It is not rigorous enough for production** You should ideally design your testcases to cover all sorts of edge cases. If you need to use a file to store testcase data, simply make a `test` directory within `internal/{Microservice Name}` and store your txt/json/whatever data there. You can get inspiration from [some of our actual unit test examples here](/technical/unittesting/).  
 
 ## Secrets Management
 Secrets are exposed to the Docker container via environment variables.  
@@ -133,7 +133,7 @@ Secrets are exposed to the Docker container via environment variables.
    3. `/build/<microservice>.Dockerfile`
 
 
-Secrets should NEVER be exposed as plaintext in your code. If you need to test locally, consider creating a `secrets` folder that is added to the `.gitignore` to store the confidential information that can be loaded on demand. For example: 
+Secrets should NEVER be exposed as plaintext in your code. If you need to test locally, consider creating a `secrets` folder that is added to the `.gitignore` to store the confidential information that can be loaded on demand. A boilerplate example used in our live codebase: 
 ```go
 someSecret := os.Getenv("SOME_SECRET")
 	var err error

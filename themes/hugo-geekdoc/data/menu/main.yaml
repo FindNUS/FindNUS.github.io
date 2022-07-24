@@ -11,6 +11,8 @@ main:
   - name: "Technical Docs"
     ref: "/technical"
     sub:
+      - name: Challenges
+        ref: "/technical/challenges"
       - name: Frontend
         ref: "/technical/frontend"
       - name: Backend

@@ -17,7 +17,7 @@ weight: 1
     - [Continuous Delivery](#continuous-delivery)
 - [Backend](#backend)
   - [API Documentation](#api-documentation)
-    - [README: Backend Milestone 2 API Documentation](#readme-backend-milestone-2-api-documentation)
+    - [README: Backend API Documentation](#readme-backend-api-documentation)
   - [Unit Testing](#unit-testing-1)
   - [CI/CD](#cicd-1)
     - [Continuous Integration](#continuous-integration-1)
@@ -70,7 +70,7 @@ Upon merging, the target branch is automatically built and deployed.
 # Backend
 
 ## API Documentation
-### [README: Backend Milestone 2 API Documentation](./apisample/)  
+### [README: Backend API Documentation](./apisample/)  
 Good API documentation is good SWE practice for backend. It reduces ambiguity in API usage and is important for knowledge retention for when new developers come and old developers go. This industry standard also makes it possible for computers to know how to interface with the API. 
 We documented the backend API using the [**OpenAPI3** specification](https://swagger.io/specification/). 
 

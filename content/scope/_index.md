@@ -15,7 +15,7 @@ emojify: true
 - [Milestone 2](#milestone-2)
   - [Frontend](#frontend-1)
   - [Backend](#backend-1)
-- [Milestone 3](#milestone-3)
+- [Milestone 3 (Edge Features)](#milestone-3-edge-features)
   - [Frontend](#frontend-2)
   - [Backend](#backend-2)
 - [Beyond Orbital](#beyond-orbital)
@@ -36,23 +36,23 @@ We aimed (and managed) to get the following core features done:
 Divide and conquer: We categorised the tasks into Frontend, Backend and other subtasks.
 
 ## Frontend 
-- [Frontend Architecture](/technical/frontend/#architecture) :white_check_mark:
-- [Frontend Design Mockups](/technical/frontend/#frontend-design) :white_check_mark:
-- App routing between home and login page :white_check_mark:
-- User authentication via Firebase :white_check_mark:
-- Interfacing with Backend API (GET item) :white_check_mark:
+- [Frontend Architecture](/technical/frontend/#architecture) 
+- [Frontend Design Mockups](/technical/frontend/#frontend-design) 
+- App routing between home and login page 
+- User authentication via Firebase 
+- Interfacing with Backend API (GET item) 
   
 ## Backend 
-- [Backend Architecture](/technical/backend/#high-level-overview) :white_check_mark:
-- Build HTTP Router to serve FindNUS RESTful API :white_check_mark:
-- Authenticate requests using Firebase API :white_check_mark:
-- Simple CRUD operations with MongoDB :white_check_mark:
-- Dockerize :whale: the backend :white_check_mark:
-- Simple CI/CD with Github actions and Using heroku's docker container registry :white_check_mark:
-- [Extensive research](/technical/backend/#appendix-a-backend-design-choices) to choose the best backend stack :white_check_mark:
+- [Backend Architecture](/technical/backend/#high-level-overview) 
+- Build HTTP Router to serve FindNUS RESTful API 
+- Authenticate requests using Firebase API 
+- Simple CRUD operations with MongoDB 
+- Dockerize :whale: the backend 
+- Simple CI/CD with Github actions and Using heroku's docker container registry 
+- [Extensive research](/technical/backend/#appendix-a-backend-design-choices) to choose the best backend stack 
 - [Document backend API](/technical/swe/apisample/) using OpenAPI3.0 specs 
 ## Etc
-- Use of 'Kanban' style boards in Github Projects to manage project :white_check_mark:
+- Use of 'Kanban' style boards in Github Projects to manage project 
 
 # Milestone 2
 In this milestone, we focussed on building the core features of FindNUS. We aimed to complete the following:  
@@ -62,24 +62,25 @@ In this milestone, we focussed on building the core features of FindNUS. We aime
 - **CICD for frontend and backend**
 
 ## Frontend 
-- Item Submission Styling :white_check_mark:
-- Form field validation :white_check_mark:
-- User profile styling :white_check_mark:
-- Loster User Dashboard UI :white_check_mark:
-- Integrate with backend to get preview of recent items :white_check_mark:
-- Filter preview by category :white_check_mark:
-- CircleCI integration for CICD :white_check_mark:
+- Item Submission Styling 
+- Form field validation 
+- User profile styling 
+- Loster User Dashboard UI 
+- Integrate with backend to get preview of recent items 
+- Filter preview by category 
+- CircleCI integration for CICD 
   
 ## Backend 
-- Dockerize a 'Item' microservice to handle CRUD requests :white_check_mark:
-- Use RabbitMQ as Message Brokering for inter-microservice communication :white_check_mark:
-- Setup ElasticSearch database and query functions for ***SSS*** :white_check_mark:
-- Fully implement CRUD endpoints: `POST PATCH GET DELETE` lost and found items :white_check_mark:
-- Pagination logic for larger GET requests (frontend's preview) :white_check_mark:
-- Integrate CRUD process with Imgur API to offload image storage and retrieval :white_check_mark:
-- More rigorous Unit Testing, with tailored testcases :white_check_mark:
+- Dockerize a 'Item' microservice to handle CRUD requests 
+- Use RabbitMQ as Message Brokering for inter-microservice communication 
+- Setup ElasticSearch database and synchronisation logic with MongoDB
+- Create Stupid Simple Searching endpoint  
+- Fully implement CRUD endpoints: `POST PATCH GET DELETE` lost and found items 
+- Pagination logic for larger GET requests (frontend's preview) 
+- Integrate CRUD process with Imgur API to offload image storage and retrieval 
+- More rigorous Unit Testing, with tailored testcases 
 
-# Milestone 3
+# Milestone 3 (Edge Features)
 In this milestone we aimed to increase the **complexity** of our project by making use of **Natural Language Procesing**, **Geolocation + Map data** and **Automated Emailing** to make FindNUS smarter :brain: and more user-centric :family:.  
 - On-demand **Lookout** service *powered by NLP* to help Losters search the database for possible matches to their lost item  
 - Geolocation UI

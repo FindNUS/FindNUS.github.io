@@ -196,8 +196,9 @@ func ElasticAddItem(item ElasticItem) {
 }
 ```
 ## Smart Lookout Service :star:
-A "**Smart Lookout Service**" was added in Milestone 3.  
-  
+A "**Smart Lookout Service**" was added in Milestone 3 as an edge feature.  
+**TI: Prose, Elasticsearch, SMTP**  
+
 Its function is to help Losters look through the dozens of found items and intelligently find Found items that match the Loster's lost item.  
 
 It uses **Natural Language Processing** to convert a Lost Item into a text-searchable query before sending it to a specially tuned ElasticSearch query to find good matches for the Lost item. We are using [`prose`](https://github.com/jdkato/prose), a NLP library for `go`.
@@ -321,7 +322,15 @@ mmq.FieldWithBoost("Name", 3) // Name matches are more significant
 mmq.FieldWithBoost("Item_details", 2) // Item_detail matches catch 'hidden' significant keywords
 ```
 
-With that, we are able to process Lost Items for their keywords and search for appropriate matching Items. This automates the manual Loster process of having to scan through our website (or anywhere else) to search for possible Found items that are their lost item.   
+With that, we are able to process Lost Items for their keywords and search for relevant matching Items.  
+
+This is integrated with the frontend. The frontend calls a `/lookout` endpoint which triggers our Lookout service and returns relevant matches to the user.    
+![Lookout in action](similar.png)  
+
+This automates the manual process of Losters having to scan through our website (or anywhere else) to search for suitable Found items matches.
+
+As a **bonus**, we also allowed Users to subscribe to this 'Lookout' service via **email**. This is the checkbox as shown in the image below:  
+![Email lookout option](subscribe.png) 
 
 # Appendix A: Backend Design Choices 
 The following was initially documented with references in Milestone 1. As it is important technical information, it is brought over here for documentation sake. [Link to the original document](https://drive.google.com/file/d/1X4n5IalejDChWyBY_rGtnBOd1qMa3wq_/view?usp=sharing). 
