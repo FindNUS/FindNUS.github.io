@@ -1,7 +1,12 @@
 # FindNUS README :telescope:
-**By Team Lost Engineers**,
-- [Jin Xuan](https://github.com/jinxuan-owyong) (Frontend)
-- [Nicholas](https://github.com/nichyjt) (Backend)
+
+**By Team Lost Engineers**
+
+| Name     | Scope    | GitHub                            | Email                    |
+| -------- | -------- | --------------------------------- | ------------------------ |
+| Jin Xuan | Frontend | https://github.com/jinxuan-owyong | jinxuan.owyong@u.nus.edu |
+| Nicholas | Backend  | https://github.com/nichyjt        | nicholas.yek@u.nus.edu   |
+
 # Foreword & Introduction
 Welcome to the FindNUS **documentation** website! This is a living document showcasing our team's efforts during Summer 2022.    
 
