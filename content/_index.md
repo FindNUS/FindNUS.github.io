@@ -46,7 +46,7 @@ You are a...
 FindNUS aims to achieve **Artemis** level.  
 
 ## What's New? :stars:
-In this milestone, we focussed on adding quality of life features to make the searching for lost items much more seamless and 'smart'. The [full release notes are here](/scope/#milestone-3-edge-features).    
+In this milestone, we focussed on adding quality of life features to make the searching for lost items much more seamless and 'smart'. The [full release notes for Milestone 3 are here](/scope/#milestone-3-edge-features).    
 - Created an on-demand Lookout service powered by NLP to help Losters search the database for possible matches to their lost item
 - Created an asynchronus Lookout service that Losters can subscribe to by email to recieve updates on any new findins
 - Geolocation UI

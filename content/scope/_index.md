@@ -6,8 +6,6 @@ weight: 1
 # geekdocHidden: false
 emojify: true
 ---
-# Introduction
-- [Introduction](#introduction)
 - [Milestone 1](#milestone-1)
   - [Frontend](#frontend)
   - [Backend](#backend)
@@ -20,8 +18,6 @@ emojify: true
   - [Backend](#backend-2)
 - [Beyond Orbital](#beyond-orbital)
 
-
-We organised the timeline into 2-week sprints.  
 
 # Milestone 1
 In this milestone, we focussed on getting a MVP website out.  

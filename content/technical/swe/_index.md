@@ -25,7 +25,8 @@ weight: 1
 
 # Sprint
 We follow a sprint of two weeks, tracked via Github Projects.
-This is a snapshot of the three sprints that we have done so far in the project: 
+This is a snapshot of our Sprint board:   
+
 ![sprint overall](sprint.png)
 
 
@@ -137,6 +138,4 @@ Various deployment parameters are configured using github actions, and a synchro
 
 **Heroku logs on deployment**
 ![CD Heroku](CICD_Heroku.png)
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
-
 <div align="right"><a href="#table-of-contents">Back to top</a></div>
