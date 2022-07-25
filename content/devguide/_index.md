@@ -8,9 +8,17 @@ emojify: true
 ---
 - [Introduction](#introduction)
 - [Frontend](#frontend)
-    - [Installation](#installation)
-    - [Configuration](#configuration)
-    - [Launch the app](#launch-the-app)
+  - [Installation](#installation)
+    - [Pre-requisite: Node.js](#pre-requisite-nodejs)
+    - [Pre-requisite: Firebase CLI](#pre-requisite-firebase-cli)
+    - [Cloning and installing dependencies](#cloning-and-installing-dependencies)
+  - [Configuration](#configuration)
+    - [Setting up API keys on Google Cloud console](#setting-up-api-keys-on-google-cloud-console)
+    - [Setting up Firebase CLI](#setting-up-firebase-cli)
+    - [Setting up the .env file](#setting-up-the-env-file)
+  - [Launch the app](#launch-the-app)
+  - [Branching Strategy](#branching-strategy)
+  - [Versioning](#versioning)
 - [Backend](#backend)
   - [Installation Guide](#installation-guide)
     - [Pre-requisite: Golang](#pre-requisite-golang)
@@ -21,14 +29,27 @@ emojify: true
   - [Building on the RESTful API](#building-on-the-restful-api)
   - [Unit Testing](#unit-testing)
   - [Secrets Management](#secrets-management)
-- [Pull Request (PR) Etiquette](#pull-request-pr-etiquette)
+  - [Pull Request (PR) Etiquette](#pull-request-pr-etiquette)
 # Introduction
 Want to contribute and work on FindNUS? This is the guide for you.  
 This guide covers how to setup the development environment for the Frontend and Backend respectively.  
 
 
 # Frontend
-### Installation
+## Installation
+### Pre-requisite: Node.js
+
+You will need Node.js to be installed to run npm. We recommend the LTS version of Node.js >= 16.13, which can be downloaded [here](https://nodejs.org/en/) for Windows/MacOS. For installation via package managers, refer to [this page](https://nodejs.org/en/download/package-manager/) instead.
+
+### Pre-requisite: Firebase CLI
+
+Firebase CLI is required for running tests, or if you wish to make amendments to the Emulator Suite. To install, run the following command:
+
+```shell
+npm install -g firebase-tools
+```
+
+### Cloning and installing dependencies
 
 ```shell
 git clone https://github.com/FindNUS/frontend.git
@@ -36,18 +57,54 @@ cd frontend
 npm install
 ```
 
-### Configuration
+## Configuration
+### Setting up API keys on Google Cloud console
+
+There are two environment variables required for the Google Maps API integration. You will need to set the following configurations in the Google Cloud console under "APIs & Services" > "Credentials"
+
+| Variable Name                | API Restrictions                         | Application Restrictions   | Website Restrictions                  |
+| ---------------------------- | ---------------------------------------- | -------------------------- | ------------------------------------- |
+| REACT_APP_MAPS_EMBED_KEY     | Maps Embed API                           | HTTP referrers (web sites) | example.com/* <br /> example.com/\*/* |
+| REACT_APP_MAPS_GEOCODING_KEY | Geocoding API <br /> Maps JavaScript API | Same as above              | Same as above                         |
+
+
+_Note: It is possible to skip this step and use one API key for both environment variables with no application/website restrictions during development. However we __do not__ recommend this to be done in production to prevent unauthorised use of your API key, as it is accessible by the user (Click [here](https://cloud.google.com/docs/authentication/api-keys?hl=en_US&_ga=2.241587970.-1032343160.1658240189#securing_an_api_key) for more information)._
+
+### Setting up Firebase CLI
+
+An authentication token is required for running tests on the Emulator Suite. You may generate the token with the following command:
+
+```shell
+firebase login:ci
+```
+
+Upon logging in to your Google account, you will be provided with an _access token_ in the command line. Store this key as `FIREBASE_TOKEN`.
+
+### Setting up the .env file
 
 - Make a copy of [.env.example](.env.example) and rename it as `.env`
-- Configure the project in the `.env` file by setting the parameters corresponding to your firebase project, and the path to API
+- Configure the project in the `.env` file by setting the parameters corresponding to your firebase project, the path to API, and the parameters as described above
+- Depending on your application environment, `REACT_APP_DEPLOY_ENV` should be set accordingly to `production`, `development` or `test`.
 
   _Note: The backend setup must be linked to the same firebase project_ 
 
-### Launch the app
+## Launch the app
 
 - Run `npm start` to initialise the local server
 
 <div align="right"><a href="#table-of-contents">Back to top</a></div>
+
+## Branching Strategy
+
+We follow the [Gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20is%20a%20legacy%20Git,software%20development%20and%20DevOps%20practices) branching strategy to ensure we always have a production-ready branch (`main`). All pull requests for feature branches (`feature/*`) should be merged into the `dev` branch. 
+
+<a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow#:~:text=Gitflow%20is%20a%20legacy%20Git,software%20development%20and%20DevOps%20practices" rel="noopener" target="_blank">
+<img src="./gitflow-example.png" title="Gitflow Example" style="width: 500px; height: auto; " />
+</a>
+
+## Versioning
+
+We follow the [Semantic Versioning 2.0.0](https://semver.org/) standard when publishing [releases](https://github.com/FindNUS/frontend/releases). 
 
 # Backend
 ## Installation Guide
@@ -151,8 +208,7 @@ someSecret := os.Getenv("SOME_SECRET")
 	}
 ```
 
-
-# Pull Request (PR) Etiquette
+## Pull Request (PR) Etiquette
 We follow a strict PR flow to ensure changes do not break FindNUS backend.  
 1. We compile all experimental/fresh changes into the dev branch
 2. The dev branch is put through regression unit testing. Once passed, it is PR-ed into UAT (staging) environment for system testing
