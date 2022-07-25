@@ -67,7 +67,17 @@ Staging (User Acceptance Testing) Environment @ [transcendent-beijinho-1ca1f9.ne
 
 ## Poster
 
+![FindNUS Poster](https://github.com/FindNUS/.github/raw/main/profile/img/5014.png)
+
 ## Video
+
+<iframe 
+  src="https://drive.google.com/file/d/1nR3jcpxzYurjFBZC3bAsQacNTzcjAwro/preview" 
+  width="640" 
+  height="360" 
+  allow="autoplay picture-in-picture" 
+  allowfullscreen
+></iframe>
 
 ## Features
 The full featureset is documented under our [project scope](/scope), but for visibility, this is a brief summary of what FindNUS can do.  
@@ -79,7 +89,7 @@ The full featureset is documented under our [project scope](/scope), but for vis
 
     Users should be able to see the latest found items on the homepage. Their item may be recently found and added to the database.  
 
-3. **Filter Preview by Category**  
+3. **Filter Preview by Category and Date**  
 
     Users can filter the latest found items by category on the homepage if they are absolutely sure of their lost item category, such as Cards.   
 
@@ -91,7 +101,7 @@ The full featureset is documented under our [project scope](/scope), but for vis
 
     Losters should have a dashboard to view and edit their Lost item records and to view their various information.   
 
-6. **Editing & Deleting details of Lost item**  
+6. **Editing & Deleting details of the Lost item**  
 
     Users can edit and delete their lost item in their dashboard
 
@@ -154,4 +164,4 @@ We document our fortnitely sprints, unit testing and more software engineering n
 Click the headers to see our project logs in excel format:
 ## [Milestone 1](https://drive.google.com/file/d/1ZO5gxvZAkBn_qlxdPUVDZ-tJKXu3CFM2/view?usp=sharing)
 ## [Milestone 2](https://drive.google.com/file/d/1c3h0cu_kSZ0nxxgs7b55iV3B9jGVkwSk/view?usp=sharing)
-## Milestone 3
+## [Milestone 3](https://drive.google.com/file/d/1LydHo3vu9g-AJjQfj-dHrBhfA2LPQmmF/view?usp=sharing)
