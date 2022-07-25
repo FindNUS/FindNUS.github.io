@@ -1,6 +1,6 @@
 baseURL = 'https://FindNUS.github.io/'
 languageCode = 'en-sg'
-title = 'FindNUS Docusite'
+title = 'FindNUS Documentation'
 theme = "hugo-geekdoc"
 
 

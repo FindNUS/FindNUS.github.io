@@ -17,7 +17,7 @@ weight: 1
     - [Continuous Delivery](#continuous-delivery)
 - [Backend](#backend)
   - [API Documentation](#api-documentation)
-    - [README: Backend REST API documentation](#readme-backend-rest-api-documentation)
+    - [README: Backend API Documentation](#readme-backend-api-documentation)
   - [Unit Testing](#unit-testing-1)
   - [CI/CD](#cicd-1)
     - [Continuous Integration](#continuous-integration-1)
@@ -25,7 +25,8 @@ weight: 1
 
 # Sprint
 We follow a sprint of two weeks, tracked via Github Projects.
-This is a snapshot of the three sprints that we have done so far in the project: 
+This is a snapshot of our Sprint board:   
+
 ![sprint overall](sprint.png)
 
 
@@ -70,11 +71,11 @@ Upon merging, the target branch is automatically built and deployed.
 # Backend
 
 ## API Documentation
-### [README: Backend REST API documentation](./apisample/)  
+### [README: Backend API Documentation](./apisample/)  
 Good API documentation is good SWE practice for backend. It reduces ambiguity in API usage and is important for knowledge retention for when new developers come and old developers go. This industry standard also makes it possible for computers to know how to interface with the API. 
 We documented the backend API using the [**OpenAPI3** specification](https://swagger.io/specification/). 
 
-Snippet from our yaml docs on how the OpenAPI3 specs can look like:
+Snippet of how the YAML OpenAPI3 specs look like:
 ```yaml
 paths:
   /item:
@@ -137,6 +138,4 @@ Various deployment parameters are configured using github actions, and a synchro
 
 **Heroku logs on deployment**
 ![CD Heroku](CICD_Heroku.png)
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
-
 <div align="right"><a href="#table-of-contents">Back to top</a></div>
