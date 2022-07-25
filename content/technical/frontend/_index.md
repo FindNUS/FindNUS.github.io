@@ -27,11 +27,6 @@ weight: 1
 - [Component Tree](#component-tree)
 - [App Routing](#app-routing)
 - [Features](#features)
-  - [Home Page](#home-page)
-  - [Viewing Items](#viewing-items)
-  - [Item Submission](#item-submission)
-  - [User Authentication](#user-authentication)
-  - [Dashboard](#dashboard)
 - [Continuous Integration/Continuous Delivery](#continuous-integrationcontinuous-delivery)
 - [Footnotes](#footnotes)
  
@@ -118,13 +113,19 @@ npm install
             title="Redux"
             alt="Redux"
         >
-    </div>
-    <div class="tech-stack--row">
         <img 
             src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg' 
             class="tech-stack--logo"
             title="Firebase"
             alt="Firebase"
+        >
+    </div>
+    <div class="tech-stack--row">
+        <img 
+            src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' 
+            class="tech-stack--logo"
+            title="Google Cloud"
+            alt="Google Cloud"
         >
         <img 
             src='https://symbols.getvecta.com/stencil_25/40_jest.5fde12ec22.svg' class="tech-stack--logo"
@@ -259,81 +260,24 @@ __ESLint__ catches and raises common errors in ECMAScript code. This helps us to
 
 ![Component Tree](https://i.imgur.com/rfV62hT.png)
 
-_(To be updated)_
-
 ## App Routing
 
 | Route                | Page                                 | Remarks                                   |
 | -------------------- | ------------------------------------ | ----------------------------------------- |
 | `/`                  | Main page                            |                                           |
-| `/submit-item/type`  | Select submit item type              | Submit either lost or found item          |
-| `/submit-item/form`  | Form to submit item                  | Query `type=lost` requires authentication |
+| `/search`            | View search results                  |                                           |
 | `/view`              | View detailed information about item | Redirects from home, search and dashboard |
 | `/login`             | User authentication                  |                                           |
 | `/dashboard/profile` | User profile                         | Requires authentication                   |
 | `/dashboard/items`   | User-uploaded items                  | Requires authentication                   |
-| `/components`        | Overview of components used          | For development use                       |
+| `/submit-item/type`  | Select submit item type              | Submit either lost or found item          |
+| `/submit-item/form`  | Form to submit item                  | Query `type=lost` requires authentication |
 
 <div align="right"><a href="#table-of-contents">Back to top</a></div>
-
 
 ## Features
-### Home Page
-![Home Page](https://i.imgur.com/xcIxNh6.png)
 
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
-
-### Viewing Items
-
-__Search__
-![Search](https://i.imgur.com/6MBzdk1.png)
-
-__View recent items__
-![View recent items](https://i.imgur.com/H6DmAri.png?1)
-
-__View item details__
-![View item details](https://i.imgur.com/sfpS7gn.png)
-
-__Filter results by category__
-![Filter results by category](https://i.imgur.com/1afr6ug.png)
-
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
-
-### Item Submission
-
-__Item type selection__
-![Item type selection](https://i.imgur.com/CgUfQbU.png)
-
-__Item submission form__
-![Item submission form](https://i.imgur.com/ojvfUPx.png)
-
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
-
-### User Authentication
-
-__Main page__
-![Login Page](https://i.imgur.com/NioAQQx.png)
-
-__Login reCAPTCHA__
-![Login reCAPTCHA](https://i.imgur.com/IYfLXXe.png)
-
-__Error message display__
-![Login error](https://i.imgur.com/WL6Lmn6.png)
-
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
-
-### Dashboard
-
-__User profile__
-
-![User profile](https://i.imgur.com/gNAUb9M.png)
-
-__User-uploaded items__
-
-![User-uploaded items](https://i.imgur.com/ou7Wp7l.png)
-
-<div align="right"><a href="#table-of-contents">Back to top</a></div>
-
+For more details on our features, click [here](../../#features) for more information.
 
 ## Continuous Integration/Continuous Delivery
 
