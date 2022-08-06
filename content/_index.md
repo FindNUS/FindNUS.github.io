@@ -113,15 +113,13 @@ The full featureset is documented under our [project scope](/scope), but for vis
 
     Users can edit and delete their lost item in their dashboard.  
     
-    This feature was added to account for the case when Losters have already found their lost item or need to amend details of the item.  
-    The edit function allows detail amendment of their lost item, which may help improve the accuracy of the automated search function (Lookout Service) that FindNUS providdes. This is also important if the lost item is a 'cold' case, as the user can unsubscribe from email notifications.      
-    The delete function allows users to be able to take ownership of their data and remove their item from the database.
+    This feature was added to account for the case when Losters have already found their lost item or need to amend details of the item. The edit function allows detail amendment of their lost item, which may help improve the accuracy of the automated search function (Lookout Service) that FindNUS provides. This is also important if the lost item is a 'cold' case, as the user can unsubscribe from email notifications. The delete function allows users to be able to take ownership of their data and remove their item from the database.  
 
 7. **Stupid Simple Searching (SSS)** for Found items   
 
     Users can intuitively just search for whatever on the searchbar. SSS is able to handle **minor typos** and knows how to handle your query. No need for joining queries or fumbling with logical AND/OR operators.  
 
-    This feature is one of the value-added functions of FindNUS.  
+    This feature is one of the value-added functions of FindNUS. Going through pages of items might be useful for large-scale searching, but it is not fast and can be inefficient for large amounts of items. Users should be able to quickly hone in to what they want to find. By creating a easy search system that is resistant to typos (which users often make), users can benefit from quickly finding the most relevant search esults to what keywords they know are specific to their LNF item, such as color, brand and location.   
 
 
 ### Edge Features 
@@ -129,14 +127,20 @@ These are additional features we developed for Milestone 3.
 1. **Google Maps Integration**  
    
    Ability to specify on Google maps exactly on the Lost and Found item whereabouts. Includes embedded google maps UI as well as ability to autodetect locations in the form field.  
+
+   The addition of Google Maps integration is a significant Quality-of-life improvement for FindNUS. This feature is significant to FindNUS as users who are looking through the Found Items page will need to know where exactly the lost item is left at (if it is not held by the founder). By pinpointing exactly where the item is located on google maps, Losters can know exactly where and how to travel to the found item's location via google maps. This saves them effort of having to search the whole vicinity for their item.   
  
 2. **NLP-powered Lookout Service**  
 
     Let FindNUS search for you on-demand. Based on your lost item, FindNUS uses NLP and ElasticSearch magic to find found items that are possible matches for your lost item. 
 
+    This feature was added based on [user feedback (#6)](technical/usertesting/#critical-issues). This feature is critical to FindNUS users as it automates away the 'searching' process for a lost item. The Lookout Service is called on demand when a user submits a lost item - they [can view possible item matches](technical/backend/#example-on-demand-lookout) and act on this information. This is particularly useful for Losters when there are too many items on the database to effectively search for their item manually. Losters can also skip manual searching altogether if they submit their lost item from the start and the Lookout Service finds the correct found item that exists on the database.  
+
 3. **Subscribe to Lookout Email Notifications**
     
-    Based on our lost item that you subscribed to, FindNUS will periodically search using the Lookout Service for possible item matches, and email you about them.  
+    Based on our lost item that you subscribed to, FindNUS will periodically search using the Lookout Service (#2 above) for possible item matches, and email you about them.  
+
+    This feature is important to Losters using FindNUS as it is possible that the lost item has not been found and submitted to FindNUS, making any searching useless. By allowing users to subscribe to a lookout notification, this automates away the need for the users to keep checking back the website for any changes. FindNUS will automatically detect if there are any good candidates matching the loster's item and notify the loster via email. This saves the Loster much time and effort and can also give them peace of mind knowing that work is being done to help search for their lost item.  
 
 4. **More robust preview filtering**  
     
@@ -144,7 +148,7 @@ These are additional features we developed for Milestone 3.
 
 5. **Email verification**
 
-    Users can be verified via email which will unlock more features of the webiste to them, such as Item Lookout Subscriptions.
+    Users can be verified via email which will unlock more features of the website to them, such as Item Lookout Subscriptions.  
 
 # Motivation - Why FindNUS?
 FindNUS was created because we feel that the current Lost and Found (LNF) system in NUS **sucks**.  
