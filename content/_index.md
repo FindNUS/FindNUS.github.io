@@ -27,7 +27,7 @@ To our user testers, fellow peer evaluators and our Advisor Hardik Narang, thank
   - [Codebase](#codebase)
   - [Poster](#poster)
   - [Video](#video)
-  - [Features](#features)
+  - [Features & Justifications](#features--justifications)
     - [Edge Features](#edge-features)
 - [Motivation - Why FindNUS?](#motivation---why-findnus)
 - [Project Scope](#project-scope)
@@ -79,35 +79,49 @@ Staging (User Acceptance Testing) Environment @ [transcendent-beijinho-1ca1f9.ne
   allowfullscreen
 ></iframe>
 
-## Features
-The full featureset is documented under our [project scope](/scope), but for visibility, this is a brief summary of what FindNUS can do.  
+## Features & Justifications
+The full featureset is documented under our [project scope](/scope), but for visibility, this is a overview of the core features for FindNUS.   
 1. **Authentication (OTP)**  
     
-    Users who want to submit a lost item will need to create an account. The Loster dashboard and lost item submission pages are protected routes that will only allow access if the user has been authenticated & has an account with FindNUS 
+    Users who want to submit a lost item will need to create an account. The Loster dashboard and lost item submission pages are protected routes that will only allow access if the user has been authenticated & has an account with FindNUS.  
+
+    This feature is important as there are certain features that only makes sense for certain user roles, such as the Loster. Thus, to properly protect these routes, the user needs to be authenticated via a login.  
 
 2. **Item Preview on Homepage**
 
     Users should be able to see the latest found items on the homepage. Their item may be recently found and added to the database.  
 
+    This feature was added as we felt that for users that just lost their item, there is a high chance that their item might be one of the most recent found items. By showing a preview of the latest found items in FindNUS, Losters may be able to find their lost item in the homepage itself. This eliminates the need to serach for the lost item in the first place, which saves the loster time and effort.  
+
 3. **Filter Preview by Category and Date**  
 
     Users can filter the latest found items by category on the homepage if they are absolutely sure of their lost item category, such as Cards.   
 
+    This feature was added based on [user feedback (#1)](technical/usertesting/#feature-requests). Users felt that if the preview was too cluttered and there are too many items on the database, there needs to be some way to preview the recent lost items in a more narrow way. By adding date and category filters, the landing page preview will be more focussed and be more useful to the user in batch-searching for their item.
+
 4. **Creation of Lost/Found Item**
 
-    Users are able to fill up a simple form to seamlessly submit a Lost & Found item to the database. 
+    Users are able to fill up a simple form to seamlessly submit a Lost & Found item to the database. This feature is absolutely core to FindNUS, as user-submissions are the lifeblood of FindNUS.  
 
 5. **Loster User Dashboard**
 
     Losters should have a dashboard to view and edit their Lost item records and to view their various information.   
 
+    This feature is necessary as the lost items are tagged to a user. Every Loster's state is retained on our database (for example, how many lost items they have) as well as various metadata like their User_id. To display this important information, we created a dashboard for logged in Losters so that they can manage their lost item submissions and personal profile.   
+
 6. **Editing & Deleting details of the Lost item**  
 
-    Users can edit and delete their lost item in their dashboard
+    Users can edit and delete their lost item in their dashboard.  
+    
+    This feature was added to account for the case when Losters have already found their lost item or need to amend details of the item.  
+    The edit function allows detail amendment of their lost item, which may help improve the accuracy of the automated search function (Lookout Service) that FindNUS providdes. This is also important if the lost item is a 'cold' case, as the user can unsubscribe from email notifications.      
+    The delete function allows users to be able to take ownership of their data and remove their item from the database.
 
 7. **Stupid Simple Searching (SSS)** for Found items   
 
     Users can intuitively just search for whatever on the searchbar. SSS is able to handle **minor typos** and knows how to handle your query. No need for joining queries or fumbling with logical AND/OR operators.  
+
+    This feature is one of the value-added functions of FindNUS.  
 
 
 ### Edge Features 

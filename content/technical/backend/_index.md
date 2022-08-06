@@ -18,9 +18,10 @@ weight: 1
     - [Synchronising the Search Engine](#synchronising-the-search-engine)
   - [Smart Lookout Service :star:](#smart-lookout-service-star)
     - [Examples](#examples)
-    - [Smart Lookout Service (EMAIL) :mailbox_with_mail:](#smart-lookout-service-email-mailbox_with_mail)
-      - [Example: Email Lookout in Action](#example-email-lookout-in-action)
   - [Smart Lookout Service (ON-DEMAND)](#smart-lookout-service-on-demand)
+    - [Example: On-Demand Lookout](#example-on-demand-lookout)
+  - [Smart Lookout Service (EMAIL) :mailbox_with_mail:](#smart-lookout-service-email-mailbox_with_mail)
+    - [Example: Email Lookout in Action](#example-email-lookout-in-action)
 - [Appendix A: Backend Design Choices](#appendix-a-backend-design-choices)
   - [Architecture: Microservice](#architecture-microservice)
   - [Platform: Heroku](#platform-heroku)
@@ -327,19 +328,50 @@ mmq.FieldWithBoost("Item_details", 2) // Item_detail matches catch 'hidden' sign
 
 With that, we are able to process Lost Items for their keywords and search for relevant matching Items.  
 
-### Smart Lookout Service (EMAIL) :mailbox_with_mail:
-To leverage on this automated smart search feature, we integrated the NLP logic with Outlook's `smtp` server.  
+## Smart Lookout Service (ON-DEMAND)
+Even though we have smart searching and filters, sometimes users may be lazy or still be unable to search for their item (Possibly due to miscategorisation or bad searching skills).
 
-A Loster will be able to click a checkbox (seen in the image below, bottom left) to subscribe to 
+To counter this, FindNUS can help find lost items for users on-demand using the NLP Lookout service!  
+
+The Smart Lookout Service has an on-demand function which is fully integrated with the frontend. The frontend calls a `/lookout` endpoint which triggers our Lookout service and returns relevant matches to the user. This is called the moment the user submits a lost item.   
+
+### Example: On-Demand Lookout 
+Putting ourselves in the shoes of a Loster, let's say we lost this item: 
+
+![lost](found1.png)
+
+Let's assume that we cannot find it on the main website for whatever reason or did not bother to search for it yet. We then submit a lost item request:  
+
+**Lost Item Submission:**  
+
+![lost](lost_email1.png)
+
+To demonstrate the accuracy and robustness of the Lookout system, we added typos, tweaked the name of the item and miscategorised our item. Once we submitted the lost item, we can view the lost item to automatically invoke the on-demand lookout request.  
+
+In the lost item details page, **as we scroll down**, we can see what the Lookout service had found on-demand.  
+
+![res](ondemand.png)  
+
+As we can see, the returned options are relevant to our search and ranked appropriately. The lost item that we were trying to find is ranked first, followed by an item that has the same brand name, then followed by other items that best match our Lost Item's description.
+
+As you can see, this automates the manual process of Losters having to scan through our website (or anywhere else) to search for suitable 'Found item' matches. This saves Losters the trouble of having to spend time and effort to crawl through the found items, and is especially helpful for people who may not have good searching skills or may not be good at english.  
+
+This completes the end-to-end user flow for the On-Demand Lookout Service.  
+
+## Smart Lookout Service (EMAIL) :mailbox_with_mail:  
+What if the item simply does not exist on the found database? We cannot expect the user to 
+ wait for hours refreshing the website to see if their lost item appears on the found database. 
+ So, we allow the Loster to get FindNUS to keep a constant lookout for similar items that are good matches for the Lost item and get notifications for that.  
+
+To do that, Loster can  click a checkbox (seen in the image below, bottom left) to subscribe to 
 the email lookout service. FindNUS will run the subscribed lost item throught the lookout service 
 daily and email the Loster (via their verified email) about possible item matches.  
 
 ![Email lookout option](subscribe.png) 
 
-
 The intent of this feature is to help Losters who cannot find their items and need help searching for it. This caters to situations where the found item has not been registered on the database yet.
 
-#### Example: Email Lookout in Action
+### Example: Email Lookout in Action
 Let's assume that we are the lost our speaker and submitted a lookout request in the image below and subscribed to lookout notifications (JBL Speaker).  
 
 ![lost_email](lost_email1.png)  
@@ -348,7 +380,8 @@ Chances are we chose to automate the searching process because we might not be f
 
 **FindNUS sending emails**  
 After a while, FindNUS does its daily Smart Lookout routine for email subscriptions.  
-For lost items that have enabled email notifications, if there are.
+For lost items that have enabled email notifications, if the lookout routine finds possible matches,
+ an email is sent to the Loster.
 
 ![emailsend](email2.png)
 
@@ -366,26 +399,6 @@ This means that as a Loster, I can simply search for the Item's id to verify if 
 ![searchid](email3.png)  
 
 This completes the automated searching process. Throughout this end to end flow, there is no input from the Loster except for the item submission and email subscription.  
-
-## Smart Lookout Service (ON-DEMAND)
-What about the case where the item is actually on the database but the Loster wasn't able to find it? (Due to miscategorisation or bad searching skills). FindNUS can help find lost items for users
- on-demand as well!
-
-The Smart Lookout Service has an on-demand function which is fully integrated with the frontend. The frontend calls a `/lookout` endpoint which triggers our Lookout service and returns relevant matches to the user.    
-
-Let's consider the same item that we lost earlier.
-
-![lost](lost_email1.png)
-
-**Scrolling down**, we can see what the Lookout service found on-demand.  
-
-
-![res](ondemand.png)  
-
-
-This automates the manual process of Losters having to scan through our website (or anywhere else) to search for suitable 'Found item' matches.  
-
-This completes the end-to-end user flow for the On-Demand Lookout Service.  
 
 # Appendix A: Backend Design Choices 
 The following was initially documented with references in Milestone 1. As it is important technical information, it is brought over here for documentation sake. [Link to the original document](https://drive.google.com/file/d/1X4n5IalejDChWyBY_rGtnBOd1qMa3wq_/view?usp=sharing). 
